@@ -58,7 +58,9 @@ class FlutterImageEnumList {
 
     var watcher = DirectoryWatcher(p.absolute(config.assetFolderPath));
     await for (var event in watcher.events) {
-      if (event.type == ChangeType.ADD || event.type == ChangeType.MODIFY) {
+      if (event.type == ChangeType.ADD ||
+          event.type == ChangeType.MODIFY ||
+          event.type == ChangeType.REMOVE) {
         var f = File(event.path);
         print(f);
         if (_matchWithFileExtensions(f)) {
@@ -81,12 +83,12 @@ class FlutterImageEnumList {
 
     File file = await File(fullFilePath).create(recursive: true);
     String content = "class ${config.customClassName} {\n";
-    content += "${config.customClassName}._();\n";
+    content += "  ${config.customClassName}._();\n";
 
     for (var entity in entities) {
       final String assetName = p.basenameWithoutExtension(entity.path);
       final String camelCaseAssetName = assetName.toCamelCase;
-      final String asset = "static String get $camelCaseAssetName => '$assetName';\n";
+      final String asset = "  static String get $camelCaseAssetName => '$assetName';\n";
       content += asset;
     }
 

@@ -81,6 +81,7 @@ class FlutterImageEnumList {
 
     File file = await File(fullFilePath).create(recursive: true);
     String content = "class ImageEnumList {\n";
+    content += "ImageEnumList._();";
 
     for (var entity in entities) {
       final String assetName = p.basenameWithoutExtension(entity.path);

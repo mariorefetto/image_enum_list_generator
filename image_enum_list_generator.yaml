@@ -1,0 +1,11 @@
+# The organizer recursively looks into all files in the `asset_folder_path` (relative to the project's root)
+asset_folder_path: assets/images/
+class_folder_path: lib/generated/image_enum_list/
+
+# The organizer only arranges files with their extension listed in the `file_extensions`.
+file_extensions:
+  - .jpg
+  - .png
+  - .svg
+
+start_class_name: "IEL"

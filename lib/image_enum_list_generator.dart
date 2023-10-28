@@ -22,13 +22,13 @@ class FlutterImageEnumList {
   FlutterImageEnumList.withConfig({
     String assetFolderPath = DefaultConfig.assetFolderPath,
     String classFolderPath = DefaultConfig.classFolderPath,
-    String startClassName = DefaultConfig.startClassName,
+    String customClassName = DefaultConfig.customClassName,
     List<String> fileExtensions = DefaultConfig.fileExtensions,
   }) {
     config = Config(
       assetFolderPath: assetFolderPath,
       classFolderPath: classFolderPath,
-      startClassName: startClassName,
+      customClassName: customClassName,
       fileExtensions: fileExtensions,
     );
   }
@@ -80,8 +80,8 @@ class FlutterImageEnumList {
     String fullFilePath = '$fullDirectoryPath/image_enum_list.dart';
 
     File file = await File(fullFilePath).create(recursive: true);
-    String content = "class ImageEnumList {\n";
-    content += "ImageEnumList._();";
+    String content = "class ${config.customClassName} {\n";
+    content += "${config.customClassName}._();\n";
 
     for (var entity in entities) {
       final String assetName = p.basenameWithoutExtension(entity.path);
@@ -93,7 +93,7 @@ class FlutterImageEnumList {
     content += "}";
     await file.writeAsString(content);
 
-    print('File image_enum_list_generator.dart creato con successo.');
+    print('File image_enum_list_generator.dart successfully created.');
   }
 
   /// Return a list of all files in the specific directory filtered by file extensions

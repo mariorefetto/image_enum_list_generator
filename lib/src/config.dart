@@ -12,28 +12,28 @@ class DefaultConfig {
     '.svg',
   ];
 
-  static const String startClassName = 'IEL';
+  static const String customClassName = 'ImageEnumList';
 }
 
 class Config {
   late String assetFolderPath;
   late String classFolderPath;
   late List<String> fileExtensions;
-  late String startClassName;
+  late String customClassName;
 
   Config({
     this.assetFolderPath = DefaultConfig.assetFolderPath,
     this.classFolderPath = DefaultConfig.classFolderPath,
     this.fileExtensions = DefaultConfig.fileExtensions,
-    this.startClassName = DefaultConfig.startClassName,
-  }) {}
+    this.customClassName = DefaultConfig.customClassName,
+  });
 
   Config.fromFile(String filePath) {
     String yamlContent = File(filePath).readAsStringSync();
     YamlMap yamlMap = loadYaml(yamlContent);
     assetFolderPath = yamlMap['asset_folder_path'] ?? DefaultConfig.assetFolderPath;
     classFolderPath = yamlMap['class_folder_path'] ?? DefaultConfig.classFolderPath;
-    startClassName = yamlMap['start_class_name'] ?? DefaultConfig.startClassName;
+    customClassName = yamlMap['custom_class_name'] ?? DefaultConfig.customClassName;
     if (yamlMap['file_extensions'] is YamlList) {
       fileExtensions = _getListFromYamlList(yamlMap['file_extensions']);
     } else {

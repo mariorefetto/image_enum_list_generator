@@ -8,4 +8,4 @@ file_extensions:
   - .png
   - .svg
 
-start_class_name: "IEL"
+custom_class_name: "ImageENUMList"
